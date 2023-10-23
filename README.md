@@ -1,11 +1,12 @@
-# Pybind11 Starter Tenplate
+# Pybind11 Starter Template
 
-This project has two purposes:
+This project has two goals:
 1. Debugging Python and C++ binding issues: This project is kept minimal to compile-test-iterate quickly. 
 2. A starter template for python and C++ combo using pybind11. Correctly setting them is complicated and takes time, especially if you are new. This project is meant to serve as a starter, so we can start by fork/copy -ing this repo.
 
-
 ## Requirements
+
+> All these are installed automatically (see Build section).
 
 Under the hood, we have these:
 
@@ -13,7 +14,6 @@ Under the hood, we have these:
 * skbuild -- builder for python which also invokes cmake
 * pybind11 -- glue layer between C++ and Python
 
-All these are installed automatically (see Build section).
 
 ## Organization
 
@@ -39,7 +39,7 @@ CMAKE_ARGS="-DCMAKE_CXX_COMPILER=g++-9" pip install -v .
 
 ```bash
 # pip install pytest  #<-- if pytest is missing
-pytest python/tests
+pytest -v python/tests
 ```
 
 
