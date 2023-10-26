@@ -38,8 +38,8 @@ CMAKE_ARGS="-DCMAKE_CXX_COMPILER=g++-9" pip install -v .
 ## Test
 
 ```bash
-# pip install pytest  #<-- if pytest is missing
-pytest -v python/tests
+# pip install pytest  # if pytest is missing
+pytest -vs python/tests
 ```
 
 

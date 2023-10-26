@@ -8,52 +8,45 @@ namespace mymod {
 
 
 
+    // this is java like iterator: no operator overloading, no pointers
     template <typename T>
     class Iterator {
     public:
         virtual bool has_next() = 0;
         virtual T next() = 0;
+    };
 
-        T operator*() {
-            if (!has_next()) {
-                throw std::runtime_error("StopIteration");
+    // this is c++ iterator with operator overloading
+    class FibIter {
+    private:
+        int64_t _n;
+        int64_t _a = 0;
+        int64_t _b = 1;
+    public:
+        FibIter(int64_t n) : _n(n) {}
+        // copy and move
+        FibIter(const FibIter&) = default;
+        FibIter(FibIter&&) = default;
+
+        bool operator==(const FibIter& other) {
+            return _n == other._n;  // used for comparing the end
+        }
+
+        int64_t operator*() {
+            return _a;
+        }
+
+        FibIter* operator++() {
+            if (_n > 0) {
+                int64_t c = _a + _b;
+                _a = _b;
+                _b = c;
+                _n--;
             }
-            return next();
+            return this;
         }
     };
 
-
-
-        class FibIter {
-        private:
-            int64_t _n;
-            int64_t _a = 0;
-            int64_t _b = 1;
-        public:
-            FibIter(int64_t n) : _n(n) {}
-            // copy and move
-            FibIter(const FibIter&) = default;
-            FibIter(FibIter&&) = default;
-
-            bool operator==(const FibIter& other) {
-                return _n == other._n;  // used for comparing the end
-            }
-
-            int64_t operator*() {
-                return _a;
-            }
-
-            FibIter* operator++() {
-                if (_n > 0) {
-                    int64_t c = _a + _b;
-                    _a = _b;
-                    _b = c;
-                    _n--;
-                }
-                return this;
-            }
-        };
-    
 
 
     class Calculator {
