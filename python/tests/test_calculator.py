@@ -17,8 +17,16 @@ def test_add_list():
     
 
 def test_add_iter():
+    # send an iterator from python to c++
     calc = Calculator("Test")
     arr = [1,2,3,4]
     iter_ = iter(arr)
     assert calc.add_iter(iter_) == sum(arr)
 
+
+def test_fibonacci():
+    # reads an iterator from cpp
+    calc = Calculator("Test")
+    fib = calc.fibonacci(10)
+    expected = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    assert list(fib) == expected
